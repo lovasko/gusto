@@ -86,8 +86,7 @@ handle_incoming(int sock)
   // Receive the message from the socket.
   (void)memset(&addr, 0, sizeof(addr));
   (void)memset(&data, 0, sizeof(data));
-  retss = recvfrom(sock, data, sizeof(data), 0, (struct sockaddr*)&addr, &len);
-  (void)len;
+  retss = recvfrom(sock, data, sizeof(data) - 1, 0, (struct sockaddr*)&addr, &len);
   
   // Check for potential errors.
   if (retss == -1) {
