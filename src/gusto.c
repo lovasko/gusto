@@ -52,7 +52,6 @@ handle_outgoing(int sock, struct sockaddr_un* addr)
     return true;
   }
 
-
   // Send the message to the socket.
   len = strlen(data);
   retss = sendto(sock, data, len, 0, (struct sockaddr*)addr, sizeof(*addr));
