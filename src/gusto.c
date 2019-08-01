@@ -40,6 +40,7 @@ handle_outgoing(int sock, struct sockaddr_un* addr)
   int reti;
 
   // Read the message from the standard input stream.
+  (void)memset(data, 0, sizeof(data));
   rets = fgets(data, sizeof(data), stdin);
   if (rets == NULL) {
     reti = feof(stdin);
@@ -54,7 +55,6 @@ handle_outgoing(int sock, struct sockaddr_un* addr)
 
   // Send the message to the socket.
   len = strlen(data);
-  (void)memset(data, 0, sizeof(data));
   retss = sendto(sock, data, len, 0, (struct sockaddr*)addr, sizeof(*addr));
 
   // Check for errors.
