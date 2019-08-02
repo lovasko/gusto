@@ -92,7 +92,7 @@ handle_incoming(int sock)
   }
 
   // Display the message on the standard output stream.
-  (void)printf("%s\n", data);
+  (void)printf("%.*s\n", (int)retss, data);
 
   return true;
 }
