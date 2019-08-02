@@ -92,7 +92,8 @@ handle_incoming(int sock)
   }
 
   // Display the message on the standard output stream.
-  (void)printf("%.*s\n", (int)retss, data);
+  (void)write(STDOUT_FILENO, data, (size_t)retss);
+  (void)write(STDOUT_FILENO, "\n", 1);
 
   return true;
 }
