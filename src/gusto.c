@@ -79,14 +79,11 @@ static bool
 handle_incoming(int sock)
 {
   ssize_t retss;
-  struct sockaddr_un addr;
   char data[BUFFER_SIZE];
-  socklen_t len;
 
   // Receive the message from the socket.
-  (void)memset(&addr, 0, sizeof(addr));
   (void)memset(&data, 0, sizeof(data));
-  retss = recvfrom(sock, data, sizeof(data) - 1, 0, (struct sockaddr*)&addr, &len);
+  retss = recvfrom(sock, data, sizeof(data) - 1, 0, NULL, NULL);
   
   // Check for potential errors.
   if (retss == -1) {
