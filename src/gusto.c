@@ -165,6 +165,17 @@ create_socket(int* sock, char* tmp)
   size_t len;
   char* rets;
 
+	// Get the current working directory.
+	rets = getcwd(tmp, 512);
+	if (rets == NULL) {
+	  perror("getcwd");
+		return false;
+	}
+
+	// Append the name template.
+	len = strlen(tmp);
+	(void)strncat(tmp, "/gusto.XXXXXX", len - 13);
+
   // Create a temporary directory.
   rets = mkdtemp(tmp);
   if (rets == NULL) {
@@ -317,7 +328,7 @@ main(int argc, char* argv[])
   int sock;                   // Local socket.
   int retb;                   // Boolean return value.
   char* srv;                  // Service socket path.
-  char tmp[] = "gustoXXXXXX"; // Temporary directory path.
+  char tmp[1024]; // Temporary directory path.
 
   retb = parse_arguments(&srv, argc, argv);
   if (retb == false) {
