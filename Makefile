@@ -6,7 +6,7 @@
 
 .POSIX:
 
-# Compilation setttings.
+# Compilation settings.
 C99 = c99
 STD = -std=c99
 OPT = -Os
